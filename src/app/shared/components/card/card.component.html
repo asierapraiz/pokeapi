@@ -1,0 +1,19 @@
+<mat-card  *ngIf="pokemon" class="card" (click)="mostrarDetalle($event)">
+  <mat-card-header>
+
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>{{pokemon.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{pokemon.name}}
+    </p>
+    <hr>
+    <div class="field">
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Chat</mat-label>
+        <input matInput type="text" (keyup.enter)="sendMessage( $event )">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

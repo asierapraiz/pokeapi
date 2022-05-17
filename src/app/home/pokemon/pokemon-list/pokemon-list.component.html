@@ -1,0 +1,17 @@
+<div class="body">
+  <div class="field">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Pokemons</mat-label>
+      <input matInput type="text" (input)="filter( $event )">
+    </mat-form-field>
+  </div>
+
+  <hr >
+
+
+  <div class="data">
+    <ng-container *ngFor="let pokemon of pokemonCopy">
+      <app-card [pokemon]="pokemon"></app-card>
+    </ng-container>
+  </div>
+</div>
