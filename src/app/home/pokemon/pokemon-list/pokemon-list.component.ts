@@ -27,6 +27,7 @@ export class PokemonListComponent implements OnInit {
         //console.log(pokemons);
         this.pokemons = res;
         this.pokemonCopy = this.pokemons;
+        console.log(res);
       }
     );
   }
