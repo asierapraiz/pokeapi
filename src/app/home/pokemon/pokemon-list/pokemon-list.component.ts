@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/core/models/pokemon';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
+import { ChatService } from 'src/app/core/services/chat.service';
+import { Message } from 'src/app/core/models/message';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -12,7 +14,7 @@ export class PokemonListComponent implements OnInit {
   text!: string;
   pokemons: Pokemon[] = [];
   pokemonCopy: Pokemon[] =[];
-  constructor(private service: PokemonService) { }
+  constructor(private service: PokemonService, private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.findAll();
@@ -36,6 +38,12 @@ export class PokemonListComponent implements OnInit {
     this.pokemonCopy = this.pokemons.filter(({ name }: Pokemon) => {
       return name.toLowerCase().includes(searchValue.toLowerCase());
     });
+  }
+
+  sendMessage(message: Message){
+    console.log("Mensaje =>", message);
+    this.chatService.sendMessage(message);
+
   }
 
 }

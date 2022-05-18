@@ -1,6 +1,7 @@
-import { Component, OnInit , Input} from '@angular/core';
+import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
 import { Pokemon } from 'src/app/core/models/pokemon';
 import { InnerServiceService } from 'src/app/core/services/inner-service.service';
+import { Message } from 'src/app/core/models/message';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +10,10 @@ import { InnerServiceService } from 'src/app/core/services/inner-service.service
 })
 export class CardComponent implements OnInit {
 
-  @Input() pokemon: Pokemon | undefined;
+  @Input() pokemon!: Pokemon;
+  @Output() passMessage = new EventEmitter<Message>();
+
+  message!: Message ;
 
 
   constructor(private inerService: InnerServiceService) { }
@@ -23,8 +27,13 @@ export class CardComponent implements OnInit {
 
   }
 
-  sendMessage($event: any){
-    console.log($event.target.value);
+  sendMessage( $event: any){
+
+    console.log("En el card",$event.target.value);
+    this.message = {'message': $event.target.value, 'pokemon': this.pokemon! };
+
+
+    this.passMessage.emit(this.message);
   }
 
 }

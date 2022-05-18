@@ -11,7 +11,7 @@
 
   <div class="data">
     <ng-container *ngFor="let pokemon of pokemonCopy">
-      <app-card [pokemon]="pokemon"></app-card>
+      <app-card [pokemon]="pokemon" (passMessage)="sendMessage($event)"></app-card>
     </ng-container>
   </div>
 </div>

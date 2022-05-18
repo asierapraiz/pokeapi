@@ -1,0 +1,14 @@
+
+<h1>Chat</h1>
+
+<div class="data">
+  <ng-container *ngFor="let message of messageList">
+
+    <mat-card class="card">
+      <mat-card-content>
+        <p>{{message.pokemon.name}}</p>
+        <p class="message">{{message.message}}</p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>
