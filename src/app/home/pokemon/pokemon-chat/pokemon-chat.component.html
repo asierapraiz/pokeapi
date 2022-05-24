@@ -1,17 +1,21 @@
 
 <h1>Chat</h1>
+<br>
+<hr>
 
 <div class="data">
   <ng-container *ngFor="let message of messageList">
 
     <mat-card class="card">
 
-        <img  class="message-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/{{message.pokemon.id}}.png" alt="Photo of a Shiba Inu">
 
+          <img  class="message-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/{{message.pokemon.id}}.png" alt="Photo of a Shiba Inu">
+
+          <p class="poke-name">{{message.pokemon.name | titlecase}}</p>
 
       <mat-card-content>
-        <p>{{message.pokemon.name}}</p>
-        <p class="message">{{message.message}}</p>
+
+        <p class="message">>{{message.message}}</p>
       </mat-card-content>
     </mat-card>
   </ng-container>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InnerServiceService } from 'src/app/core/services/inner-service.service';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
-import { Pokemon } from 'src/app/core/models/pokemon';
+import { Ability, Pokemon } from 'src/app/core/models/pokemon';
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
@@ -9,7 +9,11 @@ import { Pokemon } from 'src/app/core/models/pokemon';
 })
 export class PokemonDetailComponent implements OnInit {
 
-  pokemonName!: string;
+  pokemon!: Pokemon;
+  abilities!: Ability[];
+  panelOneState=false;
+  panelSecondState=false;
+
   constructor(private innerServiceService: InnerServiceService, private pokemonService:PokemonService) { }
 
   ngOnInit(): void {
@@ -21,10 +25,12 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   showPokemon(pokemon: string){
+    console.log("En show pokemon", pokemon);
     this.pokemonService.finfByNamePokemon(pokemon).subscribe(
-      (pokemonName) =>{
-        this.pokemonName = pokemonName;
-        console.log(this.pokemonName);
+      (pokemon) =>{
+        this.pokemon = pokemon;
+        this.abilities=pokemon.abilities;
+        console.log("pokemon abilities=>", this.abilities);
       }
     );
   }

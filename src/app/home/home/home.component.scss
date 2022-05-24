@@ -1,6 +1,9 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+.toolbar{
+  border-bottom: 1px solid black;
+}
 
 .content{
   width:100%;
@@ -8,18 +11,23 @@
   flex-direction: row;
 }
 .left{
-  padding: 25px;
-  width: 75%;
+  padding: 10px;
+  width: 33%;
+}
+.center{
+  padding: 10px;
+  width:33%;
+  border-left: 1px solid grey;
 }
 .right{
-  width: 25%;
-  padding: 25px;
+  width: 33%;
+  padding: 10px;
   height: 100vh;
-  border-left: 1px solid grey;
+  border-left: 1px solid rgb(155, 150, 150);
 }
 
 .yellow{
-  background-color: rgb(227, 218, 44);
+  background-color: rgb(86, 88, 91);
 }
 
 

@@ -3,6 +3,9 @@ import { Pokemon } from 'src/app/core/models/pokemon';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { ChatService } from 'src/app/core/services/chat.service';
 import { Message } from 'src/app/core/models/message';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -14,11 +17,18 @@ export class PokemonListComponent implements OnInit {
   text!: string;
   pokemons: Pokemon[] = [];
   pokemonCopy: Pokemon[] =[];
+  inputNameControl = new FormControl();
+  formCtrlSub!: Subscription;
+
   constructor(private service: PokemonService, private chatService: ChatService) { }
 
-  ngOnInit(): void {
-    this.findAll();
+
+
+  ngOnInit() {
+
+      this.findAll();
   }
+
 
   findAll() {
 
@@ -33,6 +43,9 @@ export class PokemonListComponent implements OnInit {
   }
 
 
+
+
+
   filter(text: any) {
     const searchValue: string = text.target.value;
     console.log({ searchValue });
@@ -44,6 +57,11 @@ export class PokemonListComponent implements OnInit {
   sendMessage(message: Message){
     console.log("Mensaje =>", message);
     this.chatService.sendMessage(message);
+
+  }
+
+  isTyping(pokemon: Pokemon){
+    this.chatService.isTyping(pokemon);
 
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, mergeMap, Observable } from 'rxjs';
+import { map, mergeMap, Observable, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon';
 
@@ -24,6 +24,22 @@ export class PokemonService {
       map((res: any) => res.results.map((poke: any) => ({...poke, id: this.getPokeId(poke)}))),
     );
   }
+
+  getBookWithAuthor(): Observable<any> {
+    const url = `${this.baseUrl}pokemon?limit=25`;
+    const url2 = `${this.baseUrl}pokemon/`;
+
+    return this.http.get(url).pipe(
+      switchMap((book: any) => this.http.get('/api/authors/' + book.name).pipe(
+        map((author: any) => {
+          book.author = author;
+          return book;
+        })
+      ))
+    );
+  }
+
+
 /*
   all(): Observable<Partial<Pokemon[]>> {
     return this.http.get(this.baseUrl).pipe(
@@ -54,7 +70,7 @@ export class PokemonService {
     const url = `${this.baseUrl}pokemon/${nombre}`;
 
     return this.http.get<any>(url).pipe(
-      map((res) => res.name)
+      map((res) => res)
     );
   }
 }

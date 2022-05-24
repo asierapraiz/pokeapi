@@ -12,6 +12,7 @@ export class CardComponent implements OnInit {
 
   @Input() pokemon!: Pokemon;
   @Output() passMessage = new EventEmitter<Message>();
+  @Output() typing = new EventEmitter<Pokemon>();
 
   message!: Message ;
 
@@ -22,7 +23,7 @@ export class CardComponent implements OnInit {
   }
 
   mostrarDetalle($event: any){
-    console.log(this.pokemon?.name);
+
     this.inerService.pokemonSeleccionado(this.pokemon!.name);
 
   }
@@ -31,9 +32,12 @@ export class CardComponent implements OnInit {
 
     console.log("En el card",$event.target.value);
     this.message = {'message': $event.target.value, 'pokemon': this.pokemon! };
-
-
     this.passMessage.emit(this.message);
+
+  }
+
+  onKey(){
+    this.typing.emit(this.pokemon);
   }
 
 }

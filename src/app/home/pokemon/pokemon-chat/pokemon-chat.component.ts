@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/core/services/chat.service';
 import { Message } from 'src/app/core/models/message';
+import { Pokemon } from 'src/app/core/models/pokemon';
 
 @Component({
   selector: 'app-pokemon-chat',
@@ -10,6 +11,8 @@ import { Message } from 'src/app/core/models/message';
 export class PokemonChatComponent implements OnInit {
 
   messageList: Message[]=[];
+
+
 
   constructor(private chatService: ChatService) {
 
@@ -23,6 +26,7 @@ export class PokemonChatComponent implements OnInit {
         console.log("Mensajes =>",this.messageList);
       }
     );
+
   }
 
 }

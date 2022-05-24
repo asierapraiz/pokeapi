@@ -1,1 +1,52 @@
-<h1>{{pokemonName}}</h1>
+<h1>Detalles</h1>
+<br>
+<hr>
+
+
+
+<div *ngIf="pokemon.id != null" class="data">
+
+  <img  class="message-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/{{pokemon.id}}.png" alt="Photo of a Shiba Inu">
+          <h1>{{pokemon.name | titlecase }} </h1>
+
+  <mat-accordion>
+
+    <mat-expansion-panel (opened)="panelOneState = true"
+                         (closed)="panelOneState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p>Data</p>
+        </mat-panel-title>
+        <mat-panel-description>
+         Description
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template *ngFor="let ability of abilities">
+        <p>{{ ability | json}}</p>
+
+      </ng-template>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+  <mat-accordion>
+
+    <mat-expansion-panel (opened)="panelSecondState = true"
+                         (closed)="panelSecondState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p>Data</p>
+        </mat-panel-title>
+        <mat-panel-description>
+         Description
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{ pokemon | json}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+</div>
+
+
+
+
